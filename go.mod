@@ -1,3 +1,3 @@
 module github.com/vinceferro/summarist-graphql
 
-go 1.13
+go 1.15

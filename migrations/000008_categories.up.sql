@@ -1,0 +1,11 @@
+BEGIN;
+
+CREATE TABLE category (
+    id UUID PRIMARY KEY DEFAULT UUID_GENERATE_V4(),
+    name TEXT NOT NULL
+);
+
+ALTER TABLE book
+ADD COLUMN category_id UUID REFERENCES category(id);
+
+END;

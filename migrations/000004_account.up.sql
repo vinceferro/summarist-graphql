@@ -1,0 +1,5 @@
+CREATE TABLE account (
+    id UUID PRIMARY KEY DEFAULT UUID_GENERATE_V4(),
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL
+);

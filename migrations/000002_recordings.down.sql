@@ -1,0 +1,12 @@
+BEGIN;
+
+ALTER TABLE book
+ADD COLUMN audio_path TEXT;
+
+ALTER TABLE book
+ALTER COLUMN audio_path
+SET NOT NULL;
+
+DROP TABLE recording;
+
+COMMIT;

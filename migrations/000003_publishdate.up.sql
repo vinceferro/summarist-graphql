@@ -1,0 +1,8 @@
+BEGIN;
+
+ALTER TABLE book
+ADD COLUMN published_at TIMESTAMP WITHOUT TIME ZONE;
+
+CREATE INDEX ON book (published_at DESC NULLS LAST);
+
+END;

@@ -4,7 +4,6 @@
 package models
 
 import (
-	"context"
 	"database/sql"
 	"fmt"
 	"reflect"
@@ -80,7 +79,7 @@ type (
 	// This should generally be used opposed to []Category.
 	CategorySlice []*Category
 	// CategoryHook is the signature for custom Category hook methods
-	CategoryHook func(context.Context, boil.ContextExecutor, *Category) error
+	CategoryHook func(boil.Executor, *Category) error
 
 	categoryQuery struct {
 		*queries.Query
@@ -120,13 +119,9 @@ var categoryAfterDeleteHooks []CategoryHook
 var categoryAfterUpsertHooks []CategoryHook
 
 // doBeforeInsertHooks executes all "before insert" hooks.
-func (o *Category) doBeforeInsertHooks(ctx context.Context, exec boil.ContextExecutor) (err error) {
-	if boil.HooksAreSkipped(ctx) {
-		return nil
-	}
-
+func (o *Category) doBeforeInsertHooks(exec boil.Executor) (err error) {
 	for _, hook := range categoryBeforeInsertHooks {
-		if err := hook(ctx, exec, o); err != nil {
+		if err := hook(exec, o); err != nil {
 			return err
 		}
 	}
@@ -135,13 +130,9 @@ func (o *Category) doBeforeInsertHooks(ctx context.Context, exec boil.ContextExe
 }
 
 // doBeforeUpdateHooks executes all "before Update" hooks.
-func (o *Category) doBeforeUpdateHooks(ctx context.Context, exec boil.ContextExecutor) (err error) {
-	if boil.HooksAreSkipped(ctx) {
-		return nil
-	}
-
+func (o *Category) doBeforeUpdateHooks(exec boil.Executor) (err error) {
 	for _, hook := range categoryBeforeUpdateHooks {
-		if err := hook(ctx, exec, o); err != nil {
+		if err := hook(exec, o); err != nil {
 			return err
 		}
 	}
@@ -150,13 +141,9 @@ func (o *Category) doBeforeUpdateHooks(ctx context.Context, exec boil.ContextExe
 }
 
 // doBeforeDeleteHooks executes all "before Delete" hooks.
-func (o *Category) doBeforeDeleteHooks(ctx context.Context, exec boil.ContextExecutor) (err error) {
-	if boil.HooksAreSkipped(ctx) {
-		return nil
-	}
-
+func (o *Category) doBeforeDeleteHooks(exec boil.Executor) (err error) {
 	for _, hook := range categoryBeforeDeleteHooks {
-		if err := hook(ctx, exec, o); err != nil {
+		if err := hook(exec, o); err != nil {
 			return err
 		}
 	}
@@ -165,13 +152,9 @@ func (o *Category) doBeforeDeleteHooks(ctx context.Context, exec boil.ContextExe
 }
 
 // doBeforeUpsertHooks executes all "before Upsert" hooks.
-func (o *Category) doBeforeUpsertHooks(ctx context.Context, exec boil.ContextExecutor) (err error) {
-	if boil.HooksAreSkipped(ctx) {
-		return nil
-	}
-
+func (o *Category) doBeforeUpsertHooks(exec boil.Executor) (err error) {
 	for _, hook := range categoryBeforeUpsertHooks {
-		if err := hook(ctx, exec, o); err != nil {
+		if err := hook(exec, o); err != nil {
 			return err
 		}
 	}
@@ -180,13 +163,9 @@ func (o *Category) doBeforeUpsertHooks(ctx context.Context, exec boil.ContextExe
 }
 
 // doAfterInsertHooks executes all "after Insert" hooks.
-func (o *Category) doAfterInsertHooks(ctx context.Context, exec boil.ContextExecutor) (err error) {
-	if boil.HooksAreSkipped(ctx) {
-		return nil
-	}
-
+func (o *Category) doAfterInsertHooks(exec boil.Executor) (err error) {
 	for _, hook := range categoryAfterInsertHooks {
-		if err := hook(ctx, exec, o); err != nil {
+		if err := hook(exec, o); err != nil {
 			return err
 		}
 	}
@@ -195,13 +174,9 @@ func (o *Category) doAfterInsertHooks(ctx context.Context, exec boil.ContextExec
 }
 
 // doAfterSelectHooks executes all "after Select" hooks.
-func (o *Category) doAfterSelectHooks(ctx context.Context, exec boil.ContextExecutor) (err error) {
-	if boil.HooksAreSkipped(ctx) {
-		return nil
-	}
-
+func (o *Category) doAfterSelectHooks(exec boil.Executor) (err error) {
 	for _, hook := range categoryAfterSelectHooks {
-		if err := hook(ctx, exec, o); err != nil {
+		if err := hook(exec, o); err != nil {
 			return err
 		}
 	}
@@ -210,13 +185,9 @@ func (o *Category) doAfterSelectHooks(ctx context.Context, exec boil.ContextExec
 }
 
 // doAfterUpdateHooks executes all "after Update" hooks.
-func (o *Category) doAfterUpdateHooks(ctx context.Context, exec boil.ContextExecutor) (err error) {
-	if boil.HooksAreSkipped(ctx) {
-		return nil
-	}
-
+func (o *Category) doAfterUpdateHooks(exec boil.Executor) (err error) {
 	for _, hook := range categoryAfterUpdateHooks {
-		if err := hook(ctx, exec, o); err != nil {
+		if err := hook(exec, o); err != nil {
 			return err
 		}
 	}
@@ -225,13 +196,9 @@ func (o *Category) doAfterUpdateHooks(ctx context.Context, exec boil.ContextExec
 }
 
 // doAfterDeleteHooks executes all "after Delete" hooks.
-func (o *Category) doAfterDeleteHooks(ctx context.Context, exec boil.ContextExecutor) (err error) {
-	if boil.HooksAreSkipped(ctx) {
-		return nil
-	}
-
+func (o *Category) doAfterDeleteHooks(exec boil.Executor) (err error) {
 	for _, hook := range categoryAfterDeleteHooks {
-		if err := hook(ctx, exec, o); err != nil {
+		if err := hook(exec, o); err != nil {
 			return err
 		}
 	}
@@ -240,13 +207,9 @@ func (o *Category) doAfterDeleteHooks(ctx context.Context, exec boil.ContextExec
 }
 
 // doAfterUpsertHooks executes all "after Upsert" hooks.
-func (o *Category) doAfterUpsertHooks(ctx context.Context, exec boil.ContextExecutor) (err error) {
-	if boil.HooksAreSkipped(ctx) {
-		return nil
-	}
-
+func (o *Category) doAfterUpsertHooks(exec boil.Executor) (err error) {
 	for _, hook := range categoryAfterUpsertHooks {
-		if err := hook(ctx, exec, o); err != nil {
+		if err := hook(exec, o); err != nil {
 			return err
 		}
 	}
@@ -278,13 +241,18 @@ func AddCategoryHook(hookPoint boil.HookPoint, categoryHook CategoryHook) {
 	}
 }
 
+// OneG returns a single category record from the query using the global executor.
+func (q categoryQuery) OneG() (*Category, error) {
+	return q.One(boil.GetDB())
+}
+
 // One returns a single category record from the query.
-func (q categoryQuery) One(ctx context.Context, exec boil.ContextExecutor) (*Category, error) {
+func (q categoryQuery) One(exec boil.Executor) (*Category, error) {
 	o := &Category{}
 
 	queries.SetLimit(q.Query, 1)
 
-	err := q.Bind(ctx, exec, o)
+	err := q.Bind(nil, exec, o)
 	if err != nil {
 		if errors.Cause(err) == sql.ErrNoRows {
 			return nil, sql.ErrNoRows
@@ -292,25 +260,30 @@ func (q categoryQuery) One(ctx context.Context, exec boil.ContextExecutor) (*Cat
 		return nil, errors.Wrap(err, "models: failed to execute a one query for category")
 	}
 
-	if err := o.doAfterSelectHooks(ctx, exec); err != nil {
+	if err := o.doAfterSelectHooks(exec); err != nil {
 		return o, err
 	}
 
 	return o, nil
 }
 
+// AllG returns all Category records from the query using the global executor.
+func (q categoryQuery) AllG() (CategorySlice, error) {
+	return q.All(boil.GetDB())
+}
+
 // All returns all Category records from the query.
-func (q categoryQuery) All(ctx context.Context, exec boil.ContextExecutor) (CategorySlice, error) {
+func (q categoryQuery) All(exec boil.Executor) (CategorySlice, error) {
 	var o []*Category
 
-	err := q.Bind(ctx, exec, &o)
+	err := q.Bind(nil, exec, &o)
 	if err != nil {
 		return nil, errors.Wrap(err, "models: failed to assign all query results to Category slice")
 	}
 
 	if len(categoryAfterSelectHooks) != 0 {
 		for _, obj := range o {
-			if err := obj.doAfterSelectHooks(ctx, exec); err != nil {
+			if err := obj.doAfterSelectHooks(exec); err != nil {
 				return o, err
 			}
 		}
@@ -319,14 +292,19 @@ func (q categoryQuery) All(ctx context.Context, exec boil.ContextExecutor) (Cate
 	return o, nil
 }
 
+// CountG returns the count of all Category records in the query, and panics on error.
+func (q categoryQuery) CountG() (int64, error) {
+	return q.Count(boil.GetDB())
+}
+
 // Count returns the count of all Category records in the query.
-func (q categoryQuery) Count(ctx context.Context, exec boil.ContextExecutor) (int64, error) {
+func (q categoryQuery) Count(exec boil.Executor) (int64, error) {
 	var count int64
 
 	queries.SetSelect(q.Query, nil)
 	queries.SetCount(q.Query)
 
-	err := q.Query.QueryRowContext(ctx, exec).Scan(&count)
+	err := q.Query.QueryRow(exec).Scan(&count)
 	if err != nil {
 		return 0, errors.Wrap(err, "models: failed to count category rows")
 	}
@@ -334,15 +312,20 @@ func (q categoryQuery) Count(ctx context.Context, exec boil.ContextExecutor) (in
 	return count, nil
 }
 
+// ExistsG checks if the row exists in the table, and panics on error.
+func (q categoryQuery) ExistsG() (bool, error) {
+	return q.Exists(boil.GetDB())
+}
+
 // Exists checks if the row exists in the table.
-func (q categoryQuery) Exists(ctx context.Context, exec boil.ContextExecutor) (bool, error) {
+func (q categoryQuery) Exists(exec boil.Executor) (bool, error) {
 	var count int64
 
 	queries.SetSelect(q.Query, nil)
 	queries.SetCount(q.Query)
 	queries.SetLimit(q.Query, 1)
 
-	err := q.Query.QueryRowContext(ctx, exec).Scan(&count)
+	err := q.Query.QueryRow(exec).Scan(&count)
 	if err != nil {
 		return false, errors.Wrap(err, "models: failed to check if category exists")
 	}
@@ -373,7 +356,7 @@ func (o *Category) Books(mods ...qm.QueryMod) bookQuery {
 
 // LoadBooks allows an eager lookup of values, cached into the
 // loaded structs of the objects. This is for a 1-M or N-M relationship.
-func (categoryL) LoadBooks(ctx context.Context, e boil.ContextExecutor, singular bool, maybeCategory interface{}, mods queries.Applicator) error {
+func (categoryL) LoadBooks(e boil.Executor, singular bool, maybeCategory interface{}, mods queries.Applicator) error {
 	var slice []*Category
 	var object *Category
 
@@ -418,7 +401,7 @@ func (categoryL) LoadBooks(ctx context.Context, e boil.ContextExecutor, singular
 		mods.Apply(query)
 	}
 
-	results, err := query.QueryContext(ctx, e)
+	results, err := query.Query(e)
 	if err != nil {
 		return errors.Wrap(err, "failed to eager load book")
 	}
@@ -437,7 +420,7 @@ func (categoryL) LoadBooks(ctx context.Context, e boil.ContextExecutor, singular
 
 	if len(bookAfterSelectHooks) != 0 {
 		for _, obj := range resultSlice {
-			if err := obj.doAfterSelectHooks(ctx, e); err != nil {
+			if err := obj.doAfterSelectHooks(e); err != nil {
 				return err
 			}
 		}
@@ -469,16 +452,25 @@ func (categoryL) LoadBooks(ctx context.Context, e boil.ContextExecutor, singular
 	return nil
 }
 
+// AddBooksG adds the given related objects to the existing relationships
+// of the category, optionally inserting them as new records.
+// Appends related to o.R.Books.
+// Sets related.R.Category appropriately.
+// Uses the global database handle.
+func (o *Category) AddBooksG(insert bool, related ...*Book) error {
+	return o.AddBooks(boil.GetDB(), insert, related...)
+}
+
 // AddBooks adds the given related objects to the existing relationships
 // of the category, optionally inserting them as new records.
 // Appends related to o.R.Books.
 // Sets related.R.Category appropriately.
-func (o *Category) AddBooks(ctx context.Context, exec boil.ContextExecutor, insert bool, related ...*Book) error {
+func (o *Category) AddBooks(exec boil.Executor, insert bool, related ...*Book) error {
 	var err error
 	for _, rel := range related {
 		if insert {
 			queries.Assign(&rel.CategoryID, o.ID)
-			if err = rel.Insert(ctx, exec, boil.Infer()); err != nil {
+			if err = rel.Insert(exec, boil.Infer()); err != nil {
 				return errors.Wrap(err, "failed to insert into foreign table")
 			}
 		} else {
@@ -489,12 +481,11 @@ func (o *Category) AddBooks(ctx context.Context, exec boil.ContextExecutor, inse
 			)
 			values := []interface{}{o.ID, rel.ID}
 
-			if boil.IsDebug(ctx) {
-				writer := boil.DebugWriterFrom(ctx)
-				fmt.Fprintln(writer, updateQuery)
-				fmt.Fprintln(writer, values)
+			if boil.DebugMode {
+				fmt.Fprintln(boil.DebugWriter, updateQuery)
+				fmt.Fprintln(boil.DebugWriter, values)
 			}
-			if _, err = exec.ExecContext(ctx, updateQuery, values...); err != nil {
+			if _, err = exec.Exec(updateQuery, values...); err != nil {
 				return errors.Wrap(err, "failed to update foreign table")
 			}
 
@@ -522,21 +513,31 @@ func (o *Category) AddBooks(ctx context.Context, exec boil.ContextExecutor, inse
 	return nil
 }
 
+// SetBooksG removes all previously related items of the
+// category replacing them completely with the passed
+// in related items, optionally inserting them as new records.
+// Sets o.R.Category's Books accordingly.
+// Replaces o.R.Books with related.
+// Sets related.R.Category's Books accordingly.
+// Uses the global database handle.
+func (o *Category) SetBooksG(insert bool, related ...*Book) error {
+	return o.SetBooks(boil.GetDB(), insert, related...)
+}
+
 // SetBooks removes all previously related items of the
 // category replacing them completely with the passed
 // in related items, optionally inserting them as new records.
 // Sets o.R.Category's Books accordingly.
 // Replaces o.R.Books with related.
 // Sets related.R.Category's Books accordingly.
-func (o *Category) SetBooks(ctx context.Context, exec boil.ContextExecutor, insert bool, related ...*Book) error {
+func (o *Category) SetBooks(exec boil.Executor, insert bool, related ...*Book) error {
 	query := "update \"book\" set \"category_id\" = null where \"category_id\" = $1"
 	values := []interface{}{o.ID}
-	if boil.IsDebug(ctx) {
-		writer := boil.DebugWriterFrom(ctx)
-		fmt.Fprintln(writer, query)
-		fmt.Fprintln(writer, values)
+	if boil.DebugMode {
+		fmt.Fprintln(boil.DebugWriter, query)
+		fmt.Fprintln(boil.DebugWriter, values)
 	}
-	_, err := exec.ExecContext(ctx, query, values...)
+	_, err := exec.Exec(query, values...)
 	if err != nil {
 		return errors.Wrap(err, "failed to remove relationships before set")
 	}
@@ -553,20 +554,28 @@ func (o *Category) SetBooks(ctx context.Context, exec boil.ContextExecutor, inse
 
 		o.R.Books = nil
 	}
-	return o.AddBooks(ctx, exec, insert, related...)
+	return o.AddBooks(exec, insert, related...)
+}
+
+// RemoveBooksG relationships from objects passed in.
+// Removes related items from R.Books (uses pointer comparison, removal does not keep order)
+// Sets related.R.Category.
+// Uses the global database handle.
+func (o *Category) RemoveBooksG(related ...*Book) error {
+	return o.RemoveBooks(boil.GetDB(), related...)
 }
 
 // RemoveBooks relationships from objects passed in.
 // Removes related items from R.Books (uses pointer comparison, removal does not keep order)
 // Sets related.R.Category.
-func (o *Category) RemoveBooks(ctx context.Context, exec boil.ContextExecutor, related ...*Book) error {
+func (o *Category) RemoveBooks(exec boil.Executor, related ...*Book) error {
 	var err error
 	for _, rel := range related {
 		queries.SetScanner(&rel.CategoryID, nil)
 		if rel.R != nil {
 			rel.R.Category = nil
 		}
-		if _, err = rel.Update(ctx, exec, boil.Whitelist("category_id")); err != nil {
+		if _, err = rel.Update(exec, boil.Whitelist("category_id")); err != nil {
 			return err
 		}
 	}
@@ -598,9 +607,14 @@ func Categories(mods ...qm.QueryMod) categoryQuery {
 	return categoryQuery{NewQuery(mods...)}
 }
 
+// FindCategoryG retrieves a single record by ID.
+func FindCategoryG(iD string, selectCols ...string) (*Category, error) {
+	return FindCategory(boil.GetDB(), iD, selectCols...)
+}
+
 // FindCategory retrieves a single record by ID with an executor.
 // If selectCols is empty Find will return all columns.
-func FindCategory(ctx context.Context, exec boil.ContextExecutor, iD string, selectCols ...string) (*Category, error) {
+func FindCategory(exec boil.Executor, iD string, selectCols ...string) (*Category, error) {
 	categoryObj := &Category{}
 
 	sel := "*"
@@ -613,7 +627,7 @@ func FindCategory(ctx context.Context, exec boil.ContextExecutor, iD string, sel
 
 	q := queries.Raw(query, iD)
 
-	err := q.Bind(ctx, exec, categoryObj)
+	err := q.Bind(nil, exec, categoryObj)
 	if err != nil {
 		if errors.Cause(err) == sql.ErrNoRows {
 			return nil, sql.ErrNoRows
@@ -624,16 +638,21 @@ func FindCategory(ctx context.Context, exec boil.ContextExecutor, iD string, sel
 	return categoryObj, nil
 }
 
+// InsertG a single record. See Insert for whitelist behavior description.
+func (o *Category) InsertG(columns boil.Columns) error {
+	return o.Insert(boil.GetDB(), columns)
+}
+
 // Insert a single record using an executor.
 // See boil.Columns.InsertColumnSet documentation to understand column list inference for inserts.
-func (o *Category) Insert(ctx context.Context, exec boil.ContextExecutor, columns boil.Columns) error {
+func (o *Category) Insert(exec boil.Executor, columns boil.Columns) error {
 	if o == nil {
 		return errors.New("models: no category provided for insertion")
 	}
 
 	var err error
 
-	if err := o.doBeforeInsertHooks(ctx, exec); err != nil {
+	if err := o.doBeforeInsertHooks(exec); err != nil {
 		return err
 	}
 
@@ -678,16 +697,15 @@ func (o *Category) Insert(ctx context.Context, exec boil.ContextExecutor, column
 	value := reflect.Indirect(reflect.ValueOf(o))
 	vals := queries.ValuesFromMapping(value, cache.valueMapping)
 
-	if boil.IsDebug(ctx) {
-		writer := boil.DebugWriterFrom(ctx)
-		fmt.Fprintln(writer, cache.query)
-		fmt.Fprintln(writer, vals)
+	if boil.DebugMode {
+		fmt.Fprintln(boil.DebugWriter, cache.query)
+		fmt.Fprintln(boil.DebugWriter, vals)
 	}
 
 	if len(cache.retMapping) != 0 {
-		err = exec.QueryRowContext(ctx, cache.query, vals...).Scan(queries.PtrsFromMapping(value, cache.retMapping)...)
+		err = exec.QueryRow(cache.query, vals...).Scan(queries.PtrsFromMapping(value, cache.retMapping)...)
 	} else {
-		_, err = exec.ExecContext(ctx, cache.query, vals...)
+		_, err = exec.Exec(cache.query, vals...)
 	}
 
 	if err != nil {
@@ -700,15 +718,21 @@ func (o *Category) Insert(ctx context.Context, exec boil.ContextExecutor, column
 		categoryInsertCacheMut.Unlock()
 	}
 
-	return o.doAfterInsertHooks(ctx, exec)
+	return o.doAfterInsertHooks(exec)
+}
+
+// UpdateG a single Category record using the global executor.
+// See Update for more documentation.
+func (o *Category) UpdateG(columns boil.Columns) (int64, error) {
+	return o.Update(boil.GetDB(), columns)
 }
 
 // Update uses an executor to update the Category.
 // See boil.Columns.UpdateColumnSet documentation to understand column list inference for updates.
 // Update does not automatically update the record in case of default values. Use .Reload() to refresh the records.
-func (o *Category) Update(ctx context.Context, exec boil.ContextExecutor, columns boil.Columns) (int64, error) {
+func (o *Category) Update(exec boil.Executor, columns boil.Columns) (int64, error) {
 	var err error
-	if err = o.doBeforeUpdateHooks(ctx, exec); err != nil {
+	if err = o.doBeforeUpdateHooks(exec); err != nil {
 		return 0, err
 	}
 	key := makeCacheKey(columns, nil)
@@ -741,13 +765,12 @@ func (o *Category) Update(ctx context.Context, exec boil.ContextExecutor, column
 
 	values := queries.ValuesFromMapping(reflect.Indirect(reflect.ValueOf(o)), cache.valueMapping)
 
-	if boil.IsDebug(ctx) {
-		writer := boil.DebugWriterFrom(ctx)
-		fmt.Fprintln(writer, cache.query)
-		fmt.Fprintln(writer, values)
+	if boil.DebugMode {
+		fmt.Fprintln(boil.DebugWriter, cache.query)
+		fmt.Fprintln(boil.DebugWriter, values)
 	}
 	var result sql.Result
-	result, err = exec.ExecContext(ctx, cache.query, values...)
+	result, err = exec.Exec(cache.query, values...)
 	if err != nil {
 		return 0, errors.Wrap(err, "models: unable to update category row")
 	}
@@ -763,14 +786,19 @@ func (o *Category) Update(ctx context.Context, exec boil.ContextExecutor, column
 		categoryUpdateCacheMut.Unlock()
 	}
 
-	return rowsAff, o.doAfterUpdateHooks(ctx, exec)
+	return rowsAff, o.doAfterUpdateHooks(exec)
+}
+
+// UpdateAllG updates all rows with the specified column values.
+func (q categoryQuery) UpdateAllG(cols M) (int64, error) {
+	return q.UpdateAll(boil.GetDB(), cols)
 }
 
 // UpdateAll updates all rows with the specified column values.
-func (q categoryQuery) UpdateAll(ctx context.Context, exec boil.ContextExecutor, cols M) (int64, error) {
+func (q categoryQuery) UpdateAll(exec boil.Executor, cols M) (int64, error) {
 	queries.SetUpdate(q.Query, cols)
 
-	result, err := q.Query.ExecContext(ctx, exec)
+	result, err := q.Query.Exec(exec)
 	if err != nil {
 		return 0, errors.Wrap(err, "models: unable to update all for category")
 	}
@@ -783,8 +811,13 @@ func (q categoryQuery) UpdateAll(ctx context.Context, exec boil.ContextExecutor,
 	return rowsAff, nil
 }
 
+// UpdateAllG updates all rows with the specified column values.
+func (o CategorySlice) UpdateAllG(cols M) (int64, error) {
+	return o.UpdateAll(boil.GetDB(), cols)
+}
+
 // UpdateAll updates all rows with the specified column values, using an executor.
-func (o CategorySlice) UpdateAll(ctx context.Context, exec boil.ContextExecutor, cols M) (int64, error) {
+func (o CategorySlice) UpdateAll(exec boil.Executor, cols M) (int64, error) {
 	ln := int64(len(o))
 	if ln == 0 {
 		return 0, nil
@@ -814,12 +847,11 @@ func (o CategorySlice) UpdateAll(ctx context.Context, exec boil.ContextExecutor,
 		strmangle.SetParamNames("\"", "\"", 1, colNames),
 		strmangle.WhereClauseRepeated(string(dialect.LQ), string(dialect.RQ), len(colNames)+1, categoryPrimaryKeyColumns, len(o)))
 
-	if boil.IsDebug(ctx) {
-		writer := boil.DebugWriterFrom(ctx)
-		fmt.Fprintln(writer, sql)
-		fmt.Fprintln(writer, args...)
+	if boil.DebugMode {
+		fmt.Fprintln(boil.DebugWriter, sql)
+		fmt.Fprintln(boil.DebugWriter, args...)
 	}
-	result, err := exec.ExecContext(ctx, sql, args...)
+	result, err := exec.Exec(sql, args...)
 	if err != nil {
 		return 0, errors.Wrap(err, "models: unable to update all in category slice")
 	}
@@ -831,14 +863,19 @@ func (o CategorySlice) UpdateAll(ctx context.Context, exec boil.ContextExecutor,
 	return rowsAff, nil
 }
 
+// UpsertG attempts an insert, and does an update or ignore on conflict.
+func (o *Category) UpsertG(updateOnConflict bool, conflictColumns []string, updateColumns, insertColumns boil.Columns) error {
+	return o.Upsert(boil.GetDB(), updateOnConflict, conflictColumns, updateColumns, insertColumns)
+}
+
 // Upsert attempts an insert using an executor, and does an update or ignore on conflict.
 // See boil.Columns documentation for how to properly use updateColumns and insertColumns.
-func (o *Category) Upsert(ctx context.Context, exec boil.ContextExecutor, updateOnConflict bool, conflictColumns []string, updateColumns, insertColumns boil.Columns) error {
+func (o *Category) Upsert(exec boil.Executor, updateOnConflict bool, conflictColumns []string, updateColumns, insertColumns boil.Columns) error {
 	if o == nil {
 		return errors.New("models: no category provided for upsert")
 	}
 
-	if err := o.doBeforeUpsertHooks(ctx, exec); err != nil {
+	if err := o.doBeforeUpsertHooks(exec); err != nil {
 		return err
 	}
 
@@ -920,18 +957,17 @@ func (o *Category) Upsert(ctx context.Context, exec boil.ContextExecutor, update
 		returns = queries.PtrsFromMapping(value, cache.retMapping)
 	}
 
-	if boil.IsDebug(ctx) {
-		writer := boil.DebugWriterFrom(ctx)
-		fmt.Fprintln(writer, cache.query)
-		fmt.Fprintln(writer, vals)
+	if boil.DebugMode {
+		fmt.Fprintln(boil.DebugWriter, cache.query)
+		fmt.Fprintln(boil.DebugWriter, vals)
 	}
 	if len(cache.retMapping) != 0 {
-		err = exec.QueryRowContext(ctx, cache.query, vals...).Scan(returns...)
+		err = exec.QueryRow(cache.query, vals...).Scan(returns...)
 		if err == sql.ErrNoRows {
 			err = nil // Postgres doesn't return anything when there's no update
 		}
 	} else {
-		_, err = exec.ExecContext(ctx, cache.query, vals...)
+		_, err = exec.Exec(cache.query, vals...)
 	}
 	if err != nil {
 		return errors.Wrap(err, "models: unable to upsert category")
@@ -943,29 +979,34 @@ func (o *Category) Upsert(ctx context.Context, exec boil.ContextExecutor, update
 		categoryUpsertCacheMut.Unlock()
 	}
 
-	return o.doAfterUpsertHooks(ctx, exec)
+	return o.doAfterUpsertHooks(exec)
+}
+
+// DeleteG deletes a single Category record.
+// DeleteG will match against the primary key column to find the record to delete.
+func (o *Category) DeleteG() (int64, error) {
+	return o.Delete(boil.GetDB())
 }
 
 // Delete deletes a single Category record with an executor.
 // Delete will match against the primary key column to find the record to delete.
-func (o *Category) Delete(ctx context.Context, exec boil.ContextExecutor) (int64, error) {
+func (o *Category) Delete(exec boil.Executor) (int64, error) {
 	if o == nil {
 		return 0, errors.New("models: no Category provided for delete")
 	}
 
-	if err := o.doBeforeDeleteHooks(ctx, exec); err != nil {
+	if err := o.doBeforeDeleteHooks(exec); err != nil {
 		return 0, err
 	}
 
 	args := queries.ValuesFromMapping(reflect.Indirect(reflect.ValueOf(o)), categoryPrimaryKeyMapping)
 	sql := "DELETE FROM \"category\" WHERE \"id\"=$1"
 
-	if boil.IsDebug(ctx) {
-		writer := boil.DebugWriterFrom(ctx)
-		fmt.Fprintln(writer, sql)
-		fmt.Fprintln(writer, args...)
+	if boil.DebugMode {
+		fmt.Fprintln(boil.DebugWriter, sql)
+		fmt.Fprintln(boil.DebugWriter, args...)
 	}
-	result, err := exec.ExecContext(ctx, sql, args...)
+	result, err := exec.Exec(sql, args...)
 	if err != nil {
 		return 0, errors.Wrap(err, "models: unable to delete from category")
 	}
@@ -975,22 +1016,26 @@ func (o *Category) Delete(ctx context.Context, exec boil.ContextExecutor) (int64
 		return 0, errors.Wrap(err, "models: failed to get rows affected by delete for category")
 	}
 
-	if err := o.doAfterDeleteHooks(ctx, exec); err != nil {
+	if err := o.doAfterDeleteHooks(exec); err != nil {
 		return 0, err
 	}
 
 	return rowsAff, nil
 }
 
+func (q categoryQuery) DeleteAllG() (int64, error) {
+	return q.DeleteAll(boil.GetDB())
+}
+
 // DeleteAll deletes all matching rows.
-func (q categoryQuery) DeleteAll(ctx context.Context, exec boil.ContextExecutor) (int64, error) {
+func (q categoryQuery) DeleteAll(exec boil.Executor) (int64, error) {
 	if q.Query == nil {
 		return 0, errors.New("models: no categoryQuery provided for delete all")
 	}
 
 	queries.SetDelete(q.Query)
 
-	result, err := q.Query.ExecContext(ctx, exec)
+	result, err := q.Query.Exec(exec)
 	if err != nil {
 		return 0, errors.Wrap(err, "models: unable to delete all from category")
 	}
@@ -1003,15 +1048,20 @@ func (q categoryQuery) DeleteAll(ctx context.Context, exec boil.ContextExecutor)
 	return rowsAff, nil
 }
 
+// DeleteAllG deletes all rows in the slice.
+func (o CategorySlice) DeleteAllG() (int64, error) {
+	return o.DeleteAll(boil.GetDB())
+}
+
 // DeleteAll deletes all rows in the slice, using an executor.
-func (o CategorySlice) DeleteAll(ctx context.Context, exec boil.ContextExecutor) (int64, error) {
+func (o CategorySlice) DeleteAll(exec boil.Executor) (int64, error) {
 	if len(o) == 0 {
 		return 0, nil
 	}
 
 	if len(categoryBeforeDeleteHooks) != 0 {
 		for _, obj := range o {
-			if err := obj.doBeforeDeleteHooks(ctx, exec); err != nil {
+			if err := obj.doBeforeDeleteHooks(exec); err != nil {
 				return 0, err
 			}
 		}
@@ -1026,12 +1076,11 @@ func (o CategorySlice) DeleteAll(ctx context.Context, exec boil.ContextExecutor)
 	sql := "DELETE FROM \"category\" WHERE " +
 		strmangle.WhereClauseRepeated(string(dialect.LQ), string(dialect.RQ), 1, categoryPrimaryKeyColumns, len(o))
 
-	if boil.IsDebug(ctx) {
-		writer := boil.DebugWriterFrom(ctx)
-		fmt.Fprintln(writer, sql)
-		fmt.Fprintln(writer, args)
+	if boil.DebugMode {
+		fmt.Fprintln(boil.DebugWriter, sql)
+		fmt.Fprintln(boil.DebugWriter, args)
 	}
-	result, err := exec.ExecContext(ctx, sql, args...)
+	result, err := exec.Exec(sql, args...)
 	if err != nil {
 		return 0, errors.Wrap(err, "models: unable to delete all from category slice")
 	}
@@ -1043,7 +1092,7 @@ func (o CategorySlice) DeleteAll(ctx context.Context, exec boil.ContextExecutor)
 
 	if len(categoryAfterDeleteHooks) != 0 {
 		for _, obj := range o {
-			if err := obj.doAfterDeleteHooks(ctx, exec); err != nil {
+			if err := obj.doAfterDeleteHooks(exec); err != nil {
 				return 0, err
 			}
 		}
@@ -1052,10 +1101,19 @@ func (o CategorySlice) DeleteAll(ctx context.Context, exec boil.ContextExecutor)
 	return rowsAff, nil
 }
 
+// ReloadG refetches the object from the database using the primary keys.
+func (o *Category) ReloadG() error {
+	if o == nil {
+		return errors.New("models: no Category provided for reload")
+	}
+
+	return o.Reload(boil.GetDB())
+}
+
 // Reload refetches the object from the database
 // using the primary keys with an executor.
-func (o *Category) Reload(ctx context.Context, exec boil.ContextExecutor) error {
-	ret, err := FindCategory(ctx, exec, o.ID)
+func (o *Category) Reload(exec boil.Executor) error {
+	ret, err := FindCategory(exec, o.ID)
 	if err != nil {
 		return err
 	}
@@ -1064,9 +1122,19 @@ func (o *Category) Reload(ctx context.Context, exec boil.ContextExecutor) error 
 	return nil
 }
 
+// ReloadAllG refetches every row with matching primary key column values
+// and overwrites the original object slice with the newly updated slice.
+func (o *CategorySlice) ReloadAllG() error {
+	if o == nil {
+		return errors.New("models: empty CategorySlice provided for reload all")
+	}
+
+	return o.ReloadAll(boil.GetDB())
+}
+
 // ReloadAll refetches every row with matching primary key column values
 // and overwrites the original object slice with the newly updated slice.
-func (o *CategorySlice) ReloadAll(ctx context.Context, exec boil.ContextExecutor) error {
+func (o *CategorySlice) ReloadAll(exec boil.Executor) error {
 	if o == nil || len(*o) == 0 {
 		return nil
 	}
@@ -1083,7 +1151,7 @@ func (o *CategorySlice) ReloadAll(ctx context.Context, exec boil.ContextExecutor
 
 	q := queries.Raw(sql, args...)
 
-	err := q.Bind(ctx, exec, &slice)
+	err := q.Bind(nil, exec, &slice)
 	if err != nil {
 		return errors.Wrap(err, "models: unable to reload all in CategorySlice")
 	}
@@ -1093,17 +1161,21 @@ func (o *CategorySlice) ReloadAll(ctx context.Context, exec boil.ContextExecutor
 	return nil
 }
 
+// CategoryExistsG checks if the Category row exists.
+func CategoryExistsG(iD string) (bool, error) {
+	return CategoryExists(boil.GetDB(), iD)
+}
+
 // CategoryExists checks if the Category row exists.
-func CategoryExists(ctx context.Context, exec boil.ContextExecutor, iD string) (bool, error) {
+func CategoryExists(exec boil.Executor, iD string) (bool, error) {
 	var exists bool
 	sql := "select exists(select 1 from \"category\" where \"id\"=$1 limit 1)"
 
-	if boil.IsDebug(ctx) {
-		writer := boil.DebugWriterFrom(ctx)
-		fmt.Fprintln(writer, sql)
-		fmt.Fprintln(writer, iD)
+	if boil.DebugMode {
+		fmt.Fprintln(boil.DebugWriter, sql)
+		fmt.Fprintln(boil.DebugWriter, iD)
 	}
-	row := exec.QueryRowContext(ctx, sql, iD)
+	row := exec.QueryRow(sql, iD)
 
 	err := row.Scan(&exists)
 	if err != nil {

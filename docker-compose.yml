@@ -1,0 +1,11 @@
+version: '3'
+services:
+  db:
+    image: 'postgres:13-alpine'
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: user
+      POSTGRES_DB: summarist
+    ports:
+      - 5432:5432
